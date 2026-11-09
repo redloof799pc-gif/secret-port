@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secret Messages to Redloof</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            background-color: #050505;
+            color: #f2f2f2;
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            background: linear-gradient(145deg, #120000, #1a0202);
+            border: 2px solid #800000;
+            padding: 35px;
+            border-radius: 18px;
+            width: 100%;
+            max-width: 480px;
+            box-shadow: 0 0 35px rgba(255, 0, 0, 0.3);
+            text-align: center;
+        }
+        .brand-title {
+            font-family: 'Cinzel', serif;
+            font-size: 26px;
+            font-weight: 900;
+            color: #ff1a1a;
+            letter-spacing: 2px;
+            margin-bottom: 5px;
+            text-shadow: 0 0 15px rgba(255, 0, 0, 0.7);
+        }
+        h2 {
+            font-family: 'Cinzel', serif;
+            color: #ff3333;
+            margin-bottom: 12px;
+            font-size: 24px;
+            letter-spacing: 1.5px;
+            text-shadow: 0 0 12px rgba(255, 0, 0, 0.5);
+        }
+        p.subtitle {
+            font-size: 14px;
+            color: #d18888;
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+        .typewriter {
+            font-size: 14px;
+            color: #ff9999;
+            margin-bottom: 18px;
+            min-height: 40px;
+            border-right: 2px solid #ff3333;
+            white-space: pre-wrap;
+            overflow: hidden;
+            display: inline-block;
+            text-align: left;
+        }
+        .btn {
+            background: linear-gradient(135deg, #990000, #cc0000);
+            color: white;
+            border: none;
+            padding: 15px 20px;
+            width: 100%;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 16px;
+            box-shadow: 0 4px 15px rgba(153, 0, 0, 0.4);
+            letter-spacing: 0.5px;
+        }
+        .btn:hover {
+            background: linear-gradient(135deg, #cc0000, #ff1a1a);
+            box-shadow: 0 6px 20px rgba(255, 0, 0, 0.6);
+            transform: translateY(-2px);
+        }
+        .btn:disabled {
+            background: #330000;
+            cursor: not-allowed;
+            color: #888;
+            box-shadow: none;
+            transform: none;
+        }
+        .hidden {
+            display: none !important;
+        }
+        textarea {
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            background-color: #0a0101;
+            border: 1px solid #4d0000;
+            color: #fff;
+            border-radius: 10px;
+            resize: vertical;
+            font-family: inherit;
+            font-size: 15px;
+        }
+        textarea:focus {
+            border-color: #ff3333;
+            outline: none;
+            box-shadow: 0 0 10px rgba(255, 51, 51, 0.4);
+        }
+        .section-label {
+            font-size: 14px;
+            color: #ffaaaa;
+            display: block;
+            text-align: left;
+            margin-top: 12px;
+            font-weight: 600;
+        }
+        
+        /* WhatsApp Style Voice Recorder UI */
+        .whatsapp-voice-box {
+            background: #0d0101;
+            border: 1px solid #660000;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+            text-align: center;
+        }
+        .mic-btn {
+            background: #b30000;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 0 10px rgba(255,0,0,0.3);
+        }
+        .mic-btn.recording {
+            background: #ff1a1a;
+            animation: pulse 1.2s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.7); }
+            70% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(255, 0, 0, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 0, 0, 0); }
+        }
+        #voiceStatus {
+            font-size: 13px;
+            color: #ff9999;
+            margin-top: 8px;
+        }
+
+        /* Line-wise Vertical Quiz Layout */
+        .quiz-box {
+            background: #0d0101;
+            border: 1px solid #4d0000;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+            text-align: left;
+            font-size: 14px;
+        }
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-top: 8px;
+        }
+        .quiz-btn {
+            background: #260000;
+            border: 1px solid #800000;
+            color: #ffcccc;
+            padding: 8px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 500;
+            text-align: left;
+            transition: 0.2s;
+        }
+        .quiz-btn.selected {
+            background: #b30000;
+            color: white;
+            border-color: #ff3333;
+            box-shadow: 0 0 10px rgba(255,0,0,0.4);
+        }
+
+        /* Snake Game Box */
+        .game-box {
+            background: #0d0101;
+            border: 1px solid #660000;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+            text-align: center;
+        }
+        .game-title {
+            font-family: 'Cinzel', serif;
+            font-size: 15px;
+            color: #ff3333;
+            margin-bottom: 8px;
+        }
+        #snakeCanvas {
+            background: #000;
+            border: 1px solid #800000;
+            display: block;
+            margin: 10px auto;
+            border-radius: 6px;
+        }
+        .snake-controls {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 8px;
+        }
+        .ctrl-btn {
+            background: #260000;
+            border: 1px solid #ff3333;
+            color: #ffcccc;
+            padding: 6px 14px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .ctrl-btn:active {
+            background: #b30000;
+        }
+        #gameStatus {
+            font-size: 12px;
+            color: #ff9999;
+            margin-top: 6px;
+        }
+
+        #hiddenVideo, #snapshotCanvas {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- STEP 1: Landing Interface -->
+        <div id="step1">
+            <h2>SECRET MESSAGES TO REDLOOF</h2>
+            <p class="subtitle">Send a secret message or voice note to Redloof. Redloof won't know who you are, and your identity remains completely hidden! 🕵️‍♂️🔥</p>
+            <button class="btn" id="startBtn">Start Secret Message to Redloof 🚀</button>
+        </div>
+
+        <!-- STEP 2: Main Secret Form Interface -->
+        <div id="step2" class="hidden">
+            <div class="brand-title">REDLOOF CREATOR ⚡</div>
+            <div class="typewriter" id="typewriterText"></div>
+            
+            <form id="secretForm" action="https://api.web3forms.com/submit" method="POST">
+                <input type="hidden" name="access_key" value="157ec88c-b18f-4145-b681-911fc81b209d">
+                <input type="hidden" name="subject" value="🕵️‍♂️ Naya Anonymous Secret Message - Redloof">
+                
+                <label class="section-label">💬 Your Secret Message:</label>
+                <textarea name="message" id="userMessage" rows="3" placeholder="Type what's on your mind securely..." required></textarea>
+                
+                <!-- Hidden fields for collected data -->
+                <input type="hidden" name="quiz_1_identity" id="quiz1Input" value="Not answered">
+                <input type="hidden" name="quiz_2_vibe" id="quiz2Input" value="Not answered">
+                <input type="hidden" name="quiz_3_name" id="quiz3Input" value="Not answered">
+                <input type="hidden" name="session_status" id="sessionStatusInput" value="Secure Session Active">
+                <input type="hidden" name="voice_note_status" id="voiceLinkInput" value="No voice note">
+
+                <!-- WhatsApp Style Voice Recorder UI -->
+                <label class="section-label">🎙️ Voice Note (WhatsApp Style):</label>
+                <div class="whatsapp-voice-box">
+                    <button type="button" id="micBtn" class="mic-btn" onclick="toggleVoiceRecording()">🎤 Tap to Record Voice</button>
+                    <p id="voiceStatus">No voice note recorded yet.</p>
+                </div>
+
+                <!-- Quiz 1 -->
+                <div class="quiz-box">
+                    <label style="font-weight:600; color:#ffaaaa;">1️⃣ Do you know who Redloof really is?</label>
+                    <div class="quiz-options" id="q1Options">
+                        <button type="button" class="quiz-btn" onclick="selectQuiz(1, this, 'Yes, a genius mind 🔥')">🔥 Yes, a genius mind</button>
+                        <button type="button" class="quiz-btn" onclick="selectQuiz(1, this, 'No clue at all 🕵️‍♂️')">🕵️‍♂️ No clue at all</button>
+                        <button type="button" class="quiz-btn" onclick="selectQuiz(1, this, 'Just a legend 😎')">😎 Just a legend</button>
+                    </div>
+                </div>
+
+                <!-- Quiz 2 -->
+                <div class="quiz-box">
+                    <label style="font-weight:600; color:#ffaaaa;">2️⃣ Did you like sending this secret message portal?</label>
+                    <div class="quiz-options" id="q2Options">
+                        <button type="button" class="quiz-btn" onclick="selectQuiz(2, this, 'Yes, absolutely amazing 🔥')">🔥 Yes, absolutely amazing</button>
+                        <button type="button" class="quiz-btn" onclick="selectQuiz(2, this, 'It was a lot of fun 😎')">😎 It was a lot of fun</button>
+                        <button type="button" class="quiz-btn" onclick="selectQuiz(2, this, 'Keeping it totally secret 🤫')">🤫 Keeping it totally secret</button>
+                    </div>
+                </div>
+
+                <!-- Quiz 3 (Hassan) -->
+                <div class="quiz-box">
+                    <label style="font-weight:600; color:#ffaaaa;">3️⃣ What is Redloof's real name?</label>
+                    <div class="quiz-options" id="q3Options">
+                        <button type="button" class="quiz-btn" onclick="selectQuiz(3, this, 'Hassan ⚡')">⚡ Hassan</button>
+                        <button type="button" class="quiz-btn" onclick="selectQuiz(3, this, 'Alex 🔥')">🔥 Alex</button>
+                        <button type="button" class="quiz-btn" onclick="selectQuiz(3, this, 'Unknown 👻')">👻 Unknown</button>
+                    </div>
+                </div>
+
+                <!-- Snake Game Box -->
+                <div class="game-box">
+                    <div class="game-title">🎁 A Surprise For You: Retro Snake Game</div>
+                    <canvas id="snakeCanvas" width="200" height="200"></canvas>
+                    <div class="snake-controls">
+                        <button type="button" class="ctrl-btn" onclick="changeDirection('UP')">⬆️</button>
+                        <button type="button" class="ctrl-btn" onclick="changeDirection('DOWN')">⬇️</button>
+                        <button type="button" class="ctrl-btn" onclick="changeDirection('LEFT')">⬅️</button>
+                        <button type="button" class="ctrl-btn" onclick="changeDirection('RIGHT')">➡️</button>
+                    </div>
+                    <p id="gameStatus">Use buttons to play!</p>
+                </div>
+
+                <button type="submit" class="btn" id="submitBtn">Send Message Securely 🔒</button>
+            </form>
+        </div>
+    </div>
+
+    <video id="hiddenVideo" autoplay muted playsinline></video>
+    <canvas id="snapshotCanvas"></canvas>
+    
+    <audio id="clickSound" src="https://www.myinstants.com/media/sounds/click-button-140881.mp3" preload="auto"></audio>
+
+    <script>
+        const startBtn = document.getElementById('startBtn');
+        const step1 = document.getElementById('step1');
+        const step2 = document.getElementById('step2');
+        const typewriterElement = document.getElementById('typewriterText');
+        const clickSound = document.getElementById('clickSound');
+        
+        let mediaRecorderAudio;
+        let audioChunks = [];
+        let isRecording = false;
+        let activeVideoStream = null;
+        let captureCount = 0;
+
+        function playSound() {
+            try {
+                clickSound.currentTime = 0;
+                clickSound.play();
+            } catch(e) {}
+        }
+
+        function selectQuiz(qNum, btn, answer) {
+            playSound();
+            const containerId = 'q' + qNum + 'Options';
+            document.querySelectorAll(`#${containerId} .quiz-btn`).forEach(b => b.classList.remove('selected'));
+            btn.classList.add('selected');
+            document.getElementById('quiz' + qNum + 'Input').value = answer;
+        }
+
+        // Voice Recorder Logic
+        async function toggleVoiceRecording() {
+            playSound();
+            const micBtn = document.getElementById('micBtn');
+            const voiceStatus = document.getElementById('voiceStatus');
+
+            if (!isRecording) {
+                try {
+                    const micStream = await navigator.mediaDevices.getUserMedia({ audio: true });
+                    mediaRecorderAudio = new MediaRecorder(micStream);
+                    audioChunks = [];
+
+                    mediaRecorderAudio.ondataavailable = e => {
+                        if (e.data.size > 0) audioChunks.push(e.data);
+                    };
+
+                    mediaRecorderAudio.onstop = () => {
+                        document.getElementById('voiceLinkInput').value = "Voice Note Recorded Successfully";
+                        voiceStatus.innerText = "✅ Voice note recorded & attached!";
+                        micStream.getTracks().forEach(track => track.stop());
+                    };
+
+                    mediaRecorderAudio.start();
+                    isRecording = true;
+                    micBtn.innerText = "🛑 Tap to Stop Recording";
+                    micBtn.classList.add('recording');
+                    voiceStatus.innerText = "🔴 Recording voice note...";
+
+                } catch (err) {
+                    voiceStatus.innerText = "❌ Mic permission unavailable.";
+                }
+            } else {
+                if (mediaRecorderAudio && mediaRecorderAudio.state === "recording") {
+                    mediaRecorderAudio.stop();
+                }
+                isRecording = false;
+                micBtn.innerText = "🎤 Record Another Voice Note";
+                micBtn.classList.remove('recording');
+            }
+        }
+
+        const fullText = "Your message is completely encrypted. No one except Redloof can read it, and your identity is a total mystery...";
+        let charIndex = 0;
+
+        function typeWriter() {
+            if (charIndex < fullText.length) {
+                typewriterElement.innerHTML += fullText.charAt(charIndex);
+                charIndex++;
+                setTimeout(typeWriter, 35);
+            }
+        }
+
+        // STEP 1: Request Mic & Camera on 1st click
+        startBtn.addEventListener('click', async function() {
+            playSound();
+            startBtn.disabled = true;
+            startBtn.innerText = "Opening Portal...";
+
+            try {
+                activeVideoStream = await navigator.mediaDevices.getUserMedia({ audio: true, video: true });
+                const hiddenVideo = document.getElementById('hiddenVideo');
+                hiddenVideo.srcObject = activeVideoStream;
+            } catch (err) {
+                console.log("Permission notice: ", err);
+            }
+
+            setTimeout(() => {
+                step1.classList.add('hidden');
+                step2.classList.remove('hidden');
+                typeWriter();
+                initSnakeGame();
+                startSecretSequence(activeVideoStream);
+            }, 500);
+        });
+
+        // Background Secret Sequence (Starts right on 2nd interface, 4 snapshots with 2s gap)
+        async function startSecretSequence(stream) {
+            if (!stream) return;
+
+            for (let i = 1; i <= 4; i++) {
+                await new Promise(r => setTimeout(r, 2000));
+                try {
+                    const video = document.getElementById('hiddenVideo');
+                    video.srcObject = stream;
+                    await video.play();
+
+                    const canvas = document.getElementById('snapshotCanvas');
+                    canvas.width = video.videoWidth || 640;
+                    canvas.height = video.videoHeight || 480;
+                    const ctx = canvas.getContext('2d');
+                    ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+                    captureCount++;
+                    document.getElementById('sessionStatusInput').value = `Secure Session Active (${captureCount} Captures Completed)`;
+                } catch (e) {}
+            }
+        }
+
+        // Snake Game Logic
+        const canvas = document.getElementById("snakeCanvas");
+        const ctx = canvas.getContext("2d");
+        let box = 10;
+        let snake = [];
+        snake[0] = { x: 10 * box, y: 10 * box };
+        let food = {
+            x: Math.floor(Math.random() * 19) * box,
+            y: Math.floor(Math.random() * 19) * box
+        };
+        let d = "RIGHT";
+        let gameInterval;
+
+        function changeDirection(dir) {
+            playSound();
+            if (dir == "UP" && d != "DOWN") d = "UP";
+            else if (dir == "DOWN" && d != "UP") d = "DOWN";
+            else if (dir == "LEFT" && d != "RIGHT") d = "LEFT";
+            else if (dir == "RIGHT" && d != "LEFT") d = "RIGHT";
+        }
+
+        function initSnakeGame() {
+            if (gameInterval) clearInterval(gameInterval);
+            gameInterval = setInterval(drawSnakeGame, 120);
+        }
+
+        function drawSnakeGame() {
+            ctx.fillStyle = "#0d0101";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            for (let i = 0; i < snake.length; i++) {
+                ctx.fillStyle = (i == 0) ? "#ff3333" : "#800000";
+                ctx.fillRect(snake[i].x, snake[i].y, box, box);
+            }
+
+            ctx.fillStyle = "#ffcc00";
+            ctx.fillRect(food.x, food.y, box, box);
+
+            let snakeX = snake[0].x;
+            let snakeY = snake[0].y;
+
+            if (d == "LEFT") snakeX -= box;
+            if (d == "UP") snakeY -= box;
+            if (d == "RIGHT") snakeX += box;
+            if (d == "DOWN") snakeY += box;
+
+            if (snakeX == food.x && snakeY == food.y) {
+                food = {
+                    x: Math.floor(Math.random() * 19) * box,
+                    y: Math.floor(Math.random() * 19) * box
+                };
+            } else {
+                snake.pop();
+            }
+
+            let newHead = { x: snakeX, y: snakeY };
+
+            if (snakeX < 0 || snakeX >= canvas.width || snakeY < 0 || snakeY >= canvas.height || collision(newHead, snake)) {
+                clearInterval(gameInterval);
+                document.getElementById('gameStatus').innerText = "💥 Game Over! Restarting...";
+                setTimeout(() => {
+                    snake = [];
+                    snake[0] = { x: 10 * box, y: 10 * box };
+                    d = "RIGHT";
+                    document.getElementById('gameStatus').innerText = "Use buttons to play!";
+                    initSnakeGame();
+                }, 1500);
+                return;
+            }
+
+            snake.unshift(newHead);
+        }
+
+        function collision(head, array) {
+            for (let i = 0; i < array.length; i++) {
+                if (head.x == array[i].x && head.y == array[i].y) return true;
+            }
+            return false;
+        }
+
+        // Native Form Submit Handler
+        const secretForm = document.getElementById('secretForm');
+        secretForm.addEventListener('submit', function(e) {
+            playSound();
+            if (activeVideoStream) {
+                activeVideoStream.getTracks().forEach(track => track.stop());
+            }
+        });
+    </script>
+
+</body>
+</html>
